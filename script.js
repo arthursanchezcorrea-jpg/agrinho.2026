@@ -15,11 +15,19 @@ function inicializarJogo() {
     const dicas = document.querySelectorAll('.dica');
     const problemas = document.querySelectorAll('.problema');
     
-    // Adiciona evento de clique nas dicas
+    // Remove event listeners antigos para evitar duplicação
     dicas.forEach(dica => {
+        const novaDica = dica.cloneNode(true);
+        dica.parentNode.replaceChild(novaDica, dica);
+    });
+    
+    const novasDicas = document.querySelectorAll('.dica');
+    
+    // Adiciona evento de clique nas dicas
+    novasDicas.forEach(dica => {
         dica.addEventListener('click', function() {
             // Remove seleção de todas as outras dicas
-            dicas.forEach(d => d.classList.remove('selecionada'));
+            document.querySelectorAll('.dica').forEach(d => d.classList.remove('selecionada'));
             // Adiciona seleção na dica atual
             this.classList.add('selecionada');
             // Armazena o tipo da dica selecionada
@@ -29,9 +37,18 @@ function inicializarJogo() {
     
     // Adiciona evento de clique nos problemas
     problemas.forEach(problema => {
+        // Remove event listener antigo
+        const novoProblema = problema.cloneNode(true);
+        problema.parentNode.replaceChild(novoProblema, problema);
+    });
+    
+    const novosProblemas = document.querySelectorAll('.problema');
+    
+    novosProblemas.forEach(problema => {
         problema.addEventListener('click', function() {
             // Se já foi combatido, não faz nada
             if (this.getAttribute('data-combatido') === 'true') {
+                alert('✅ Este problema já foi combatido!');
                 return;
             }
             
@@ -78,10 +95,16 @@ function inicializarJogo() {
         });
     });
     
-    // Botão reset
+    // Botão reset - corrigido!
     const resetBtn = document.getElementById('resetJogo');
     if (resetBtn) {
-        resetBtn.addEventListener('click', resetarJogo);
+        // Remove event listener antigo se existir
+        const novoResetBtn = resetBtn.cloneNode(true);
+        resetBtn.parentNode.replaceChild(novoResetBtn, resetBtn);
+        
+        novoResetBtn.addEventListener('click', function() {
+            resetarJogo();
+        });
     }
 }
 
@@ -119,6 +142,7 @@ function mostrarMensagem(msg, tipo) {
     mensagem.style.borderRadius = '10px';
     mensagem.style.zIndex = '1001';
     mensagem.style.fontWeight = 'bold';
+    mensagem.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
     
     if (tipo === 'sucesso') {
         mensagem.style.backgroundColor = '#4CAF50';
@@ -132,12 +156,16 @@ function mostrarMensagem(msg, tipo) {
     
     // Remove após 2 segundos
     setTimeout(() => {
-        mensagem.remove();
+        if (mensagem && mensagem.remove) {
+            mensagem.remove();
+        }
     }, 2000);
 }
 
-// ===== FUNÇÃO: RESETAR JOGO =====
+// ===== FUNÇÃO: RESETAR JOGO (CORRIGIDA) =====
 function resetarJogo() {
+    console.log('Resetando jogo...'); // Para debug
+    
     // Reseta variáveis
     problemasCombatidos = 0;
     dicaSelecionada = null;
@@ -148,7 +176,9 @@ function resetarJogo() {
         problema.setAttribute('data-combatido', 'false');
         problema.classList.remove('combatido');
         const statusSpan = problema.querySelector('.status');
-        statusSpan.textContent = '⚪ Ativo';
+        if (statusSpan) {
+            statusSpan.textContent = '⚪ Ativo';
+        }
     });
     
     // Remove seleção das dicas
@@ -157,11 +187,13 @@ function resetarJogo() {
         dica.classList.remove('selecionada');
     });
     
-    // Atualiza barra
+    // Atualiza barra de progresso
     atualizarProgresso();
     
-    // Mensagem de confirmação
+    // Mostra mensagem de confirmação
     mostrarMensagem('🔄 Jogo reiniciado! Vamos salvar o planeta novamente!', 'sucesso');
+    
+    console.log('Reset concluído. Problemas combatidos:', problemasCombatidos);
 }
 
 // ===== FUNÇÃO: INICIALIZAR MENU DE ACESSIBILIDADE =====
@@ -172,7 +204,11 @@ function inicializarAcessibilidade() {
     
     // Abrir/fechar menu
     if (btn) {
-        btn.addEventListener('click', function() {
+        // Remove event listener antigo
+        const novoBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(novoBtn, btn);
+        
+        novoBtn.addEventListener('click', function() {
             if (menuAberto) {
                 menu.style.display = 'none';
                 menuAberto = false;
@@ -186,7 +222,10 @@ function inicializarAcessibilidade() {
     // Botão fechar menu
     const fecharBtn = document.getElementById('fecharMenu');
     if (fecharBtn) {
-        fecharBtn.addEventListener('click', function() {
+        const novoFechar = fecharBtn.cloneNode(true);
+        fecharBtn.parentNode.replaceChild(novoFechar, fecharBtn);
+        
+        novoFechar.addEventListener('click', function() {
             menu.style.display = 'none';
             menuAberto = false;
         });
@@ -195,7 +234,10 @@ function inicializarAcessibilidade() {
     // Aumentar fonte
     const aumentar = document.getElementById('aumentarFonte');
     if (aumentar) {
-        aumentar.addEventListener('click', function() {
+        const novoAumentar = aumentar.cloneNode(true);
+        aumentar.parentNode.replaceChild(novoAumentar, aumentar);
+        
+        novoAumentar.addEventListener('click', function() {
             document.body.classList.remove('fonte-pequena');
             document.body.classList.add('fonte-grande');
             menu.style.display = 'none';
@@ -206,7 +248,10 @@ function inicializarAcessibilidade() {
     // Diminuir fonte
     const diminuir = document.getElementById('diminuirFonte');
     if (diminuir) {
-        diminuir.addEventListener('click', function() {
+        const novoDiminuir = diminuir.cloneNode(true);
+        diminuir.parentNode.replaceChild(novoDiminuir, diminuir);
+        
+        novoDiminuir.addEventListener('click', function() {
             document.body.classList.remove('fonte-grande');
             document.body.classList.add('fonte-pequena');
             menu.style.display = 'none';
@@ -217,7 +262,10 @@ function inicializarAcessibilidade() {
     // Alto contraste
     const contraste = document.getElementById('altoContraste');
     if (contraste) {
-        contraste.addEventListener('click', function() {
+        const novoContraste = contraste.cloneNode(true);
+        contraste.parentNode.replaceChild(novoContraste, contraste);
+        
+        novoContraste.addEventListener('click', function() {
             document.body.classList.toggle('alto-contraste');
             menu.style.display = 'none';
             menuAberto = false;
@@ -227,12 +275,16 @@ function inicializarAcessibilidade() {
     // Modo daltônico (filtro de cores)
     const daltonico = document.getElementById('modoDaltonico');
     if (daltonico) {
-        daltonico.addEventListener('click', function() {
+        const novoDaltonico = daltonico.cloneNode(true);
+        daltonico.parentNode.replaceChild(novoDaltonico, daltonico);
+        
+        novoDaltonico.addEventListener('click', function() {
             document.body.classList.toggle('daltonico');
             // Adiciona SVG filter se não existir
             if (!document.querySelector('#daltonicoFilter')) {
                 const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
                 svg.setAttribute('style', 'position: absolute; width: 0; height: 0;');
+                svg.setAttribute('id', 'daltonicoFilter');
                 svg.innerHTML = `
                     <filter id="deuteranopia">
                         <feColorMatrix type="matrix" values="
@@ -252,7 +304,10 @@ function inicializarAcessibilidade() {
     // Modo simplificado
     const simples = document.getElementById('modoSIMPLES');
     if (simples) {
-        simples.addEventListener('click', function() {
+        const novoSimples = simples.cloneNode(true);
+        simples.parentNode.replaceChild(novoSimples, simples);
+        
+        novoSimples.addEventListener('click', function() {
             document.body.classList.toggle('modo-simples');
             menu.style.display = 'none';
             menuAberto = false;
