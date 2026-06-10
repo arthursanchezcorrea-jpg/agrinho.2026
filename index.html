@@ -1,1 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Fumaça no Campo - Agro Consciente</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <!-- Botão de acessibilidade fixo -->
+    <div class="acessibilidade-btn" id="btnAcessibilidade">
+        ♿ Acessibilidade
+    </div>
+
+    <!-- Menu de acessibilidade (inicialmente escondido) -->
+    <div class="menu-acessibilidade" id="menuAcessibilidade">
+        <button id="aumentarFonte">A+ Aumentar fonte</button>
+        <button id="diminuirFonte">A- Diminuir fonte</button>
+        <button id="altoContraste">🌓 Alto contraste</button>
+        <button id="modoDaltonico">🎨 Modo daltônico (deuteranopia)</button>
+        <button id="modoSIMPLES">📄 Versão simplificada</button>
+        <button id="fecharMenu">✖ Fechar</button>
+    </div>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">
+            <h1>🌾 Fumaça no Campo</h1>
+            <p>Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#problema">Problemas</a></li>
+                <li><a href="#jogo">Jogo</a></li>
+                <li><a href="#solucoes">Soluções</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main>
+        <!-- Seção 1: Início - vibe natural -->
+        <section id="inicio" class="secao natural">
+            <article class="container">
+                <h2>Bem-vindo ao Campo Sustentável</h2>
+                <p>A natureza nos presenteia com paisagens incríveis, solo fértil e ar puro. O agronegócio forte e sustentável é possível quando equilibramos produção e preservação ambiental.</p>
+                <div class="imagem-destaque">
+                    <div class="desenho-campo"></div>
+                    <p class="legenda">🎨 Desenho original: campo saudável e verde</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Seção 2: Problema ambiental - cores começam a mudar -->
+        <section id="problema" class="secao problema">
+            <article class="container">
+                <h2>🔥 O problema: Queimadas e Agrotóxicos</h2>
+                <p>Infelizmente, a realidade do campo nem sempre é verde. As <strong>queimadas</strong> destroem florestas, matam animais e poluem o ar com fumaça tóxica. Já o <strong>uso excessivo de agrotóxicos</strong> contamina o solo, a água e os alimentos, podendo causar doenças graves.</p>
+                
+                <div class="cards-problema">
+                    <div class="card queimada">
+                        <h3>🔥 Queimadas</h3>
+                        <p>Devastam a biodiversidade, liberam gases poluentes e destroem nascentes.</p>
+                    </div>
+                    <div class="card agrotoxico">
+                        <h3>🧪 Agrotóxicos</h3>
+                        <p>Contaminam alimentos, causam problemas de saúde e prejudicam insetos polinizadores.</p>
+                    </div>
+                </div>
+
+                <div class="alerta">
+                    <p><strong>⚠️ Tragédia vem da fumaça:</strong> A saúde precisa ser mais natural. Precisamos de mudança!</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Seção 3: Jogo - Funcionalidade interativa -->
+        <section id="jogo" class="secao jogo">
+            <article class="container">
+                <h2>🌱 Ajude o campo! Combine as dicas</h2>
+                <p><strong>Como jogar:</strong> Clique em uma <strong>dica agrária</strong> (lado esquerdo) e depois clique em um <strong>problema</strong> (lado direito) para combatê-lo. Cada acerto aumenta sua porcentagem de ajuda ao mundo!</p>
+                
+                <div class="jogo-container">
+                    <!-- Lado esquerdo: Dicas agrárias -->
+                    <div class="dicas-area">
+                        <h3>📋 Dicas agrárias</h3>
+                        <div class="dicas-lista">
+                            <div class="dica" data-tipo="queimada">
+                                <span class="dica-icone">🔥</span>
+                                <span class="dica-texto">Faça aceiros (barreiras contra fogo)</span>
+                            </div>
+                            <div class="dica" data-tipo="queimada">
+                                <span class="dica-icone">🔥</span>
+                                <span class="dica-texto">Denuncie queimadas ilegais (Ibama/Polícia)</span>
+                            </div>
+                            <div class="dica" data-tipo="queimada">
+                                <span class="dica-icone">🔥</span>
+                                <span class="dica-texto">Use técnicas de plantio direto sem queimar</span>
+                            </div>
+                            <div class="dica" data-tipo="agrotoxico">
+                                <span class="dica-icone">🌿</span>
+                                <span class="dica-texto">Use adubos orgânicos e compostagem</span>
+                            </div>
+                            <div class="dica" data-tipo="agrotoxico">
+                                <span class="dica-icone">🌿</span>
+                                <span class="dica-texto">Plante espécies que repelem pragas naturalmente</span>
+                            </div>
+                            <div class="dica" data-tipo="agrotoxico">
+                                <span class="dica-icone">🌿</span>
+                                <span class="dica-texto">Invista em controle biológico de pragas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lado direito: Problemas -->
+                    <div class="problemas-area">
+                        <h3>⚠️ Problemas para combater</h3>
+                        <div class="problemas-lista">
+                            <div class="problema" data-tipo="queimada" data-combatido="false">
+                                <span class="problema-icone">🔥</span>
+                                <div class="problema-info">
+                                    <strong>Queimada na floresta</strong>
+                                    <small>Clique para combater com a dica certa</small>
+                                </div>
+                                <span class="status">⚪ Ativo</span>
+                            </div>
+                            <div class="problema" data-tipo="agrotoxico" data-combatido="false">
+                                <span class="problema-icone">🧪</span>
+                                <div class="problema-info">
+                                    <strong>Alimento com agrotóxico</strong>
+                                    <small>Clique para combater com a dica certa</small>
+                                </div>
+                                <span class="status">⚪ Ativo</span>
+                            </div>
+                            <div class="problema" data-tipo="queimada" data-combatido="false">
+                                <span class="problema-icone">🔥</span>
+                                <div class="problema-info">
+                                    <strong>Fumaça tóxica no ar</strong>
+                                    <small>Clique para combater com a dica certa</small>
+                                </div>
+                                <span class="status">⚪ Ativo</span>
+                            </div>
+                            <div class="problema" data-tipo="agrotoxico" data-combatido="false">
+                                <span class="problema-icone">🧪</span>
+                                <div class="problema-info">
+                                    <strong>Solo contaminado por agrotóxicos</strong>
+                                    <small>Clique para combater com a dica certa</small>
+                                </div>
+                                <span class="status">⚪ Ativo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barra de progresso -->
+                <div class="progresso-area">
+                    <h3>🌍 Você ajudou o mundo em:</h3>
+                    <div class="barra-container">
+                        <div class="barra-progresso" id="barraProgresso" style="width: 0%;">0%</div>
+                    </div>
+                    <p id="textoProgresso">Combine dicas com problemas para salvar o planeta!</p>
+                </div>
+
+                <!-- Botão reset -->
+                <button id="resetJogo" class="btn-reset">🔄 Recomeçar jogo</button>
+            </article>
+        </section>
+
+        <!-- Seção 4: Soluções sustentáveis -->
+        <section id="solucoes" class="secao solucoes">
+            <article class="container">
+                <h2>🌿 Soluções para um agro forte e sustentável</h2>
+                <div class="lista-solucoes">
+                    <div class="solucao-item">
+                        <h3>🚫 Contra queimadas</h3>
+                        <p>Rotacionar culturas, utilizar integração lavoura-pecuária-floresta (ILPF) e fazer aceiros.</p>
+                    </div>
+                    <div class="solucao-item">
+                        <h3>🥗 Contra agrotóxicos</h3>
+                        <p>Consumir alimentos orgânicos, plantar em casa e cobrar fiscalização dos órgãos ambientais.</p>
+                    </div>
+                    <div class="solucao-item">
+                        <h3>💧 Conservação ambiental</h3>
+                        <p>Preservar nascentes, plantar árvores nativas e apoiar a agricultura familiar.</p>
+                    </div>
+                </div>
+                <p class="conclusao"><strong>Conclusão:</strong> O equilíbrio entre produção e meio ambiente é possível! Com pequenas atitudes, podemos ter um agro forte sem destruir o planeta.</p>
+            </article>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>© 2026 - Projeto Agrinho | Arthur Sanchez Correa</p>
+            <p>🌱 "Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente"</p>
+            <p>Desenhos e logotipo originais do projeto</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
